@@ -123,7 +123,6 @@ resource "aws_instance" "ec2_sftp_server" {
     }
   }
 
-
   provisioner "remote-exec" {
     inline = [
       "sudo sh /tmp/init_scripts/configure.sh",
