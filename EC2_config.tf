@@ -80,3 +80,21 @@ resource "aws_security_group" "allow_ssh" {
     Name = "allow_ssh"
   }
 }
+
+resource "aws_instance" "ec2_sftp_server" {
+  ami                         = "ami-0bb3fad3c0286ebd5"
+  instance_type               = "t2.micro"
+  associate_public_ip_address = true
+  iam_instance_profile        = aws_iam_instance_profile.ec2_profile.name
+  tags = {
+    Name = "s3fs-instance"
+  }
+  volume_tags = {
+    Name = "s3fs-volume"
+  }
+
+  key_name = var.ec2_key_name
+
+  security_groups = ["allow_ssh"]
+
+}
