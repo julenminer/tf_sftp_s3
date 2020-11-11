@@ -51,3 +51,8 @@ resource "aws_iam_instance_profile" "ec2_profile" {
   name = "ec2_profile"
   role = aws_iam_role.ec2_role.name
 }
+
+resource "aws_key_pair" "deployer_key" {
+  key_name   = var.ec2_key_name
+  public_key = var.ec2_public_key
+}
